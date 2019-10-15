@@ -21,13 +21,13 @@ const filmAPI = {
                 return response.data.results;
             });
     },
-    getImg(name="dog") {
-        let uri = encodeURIComponent(name)
+    getImg(searchedImg) {
+        let uri = encodeURIComponent(searchedImg)
         return instance2.get(`?key=${key}&q=${uri}&per_page=3`)
             .then(response => {
-                console.log(response.data);
-                return response.data;
-            });
+                // console.log(response.data);
+                return response.data.hits;
+            })
     },
 }
 

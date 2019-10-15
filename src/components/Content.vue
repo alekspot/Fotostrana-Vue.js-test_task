@@ -6,8 +6,10 @@
                 <Card 
                     v-for="(film,index) in whatShow" 
                     :key="index"
+                    :id ="index"
                     :title="film.title"
                     :subtitle="film.director"
+                    :img="film.img"
                 />
                 
             </template>
@@ -60,8 +62,9 @@ export default {
    .content {
        display: grid;
        grid-gap: 18px;
-       grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
-       grid-template-rows: 1fr 1fr 1fr;
+       grid-template-columns: repeat(auto-fit, 258px);
+       
+       justify-content: center;
    }
    .notFound {
        font-family: Tahoma;

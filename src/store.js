@@ -18,11 +18,21 @@ export const store = new Vuex.Store({
         }
     },
     actions:{
-        async getFilms({commit}){
-            const films = await api.getFilms()
+        async getFilms({commit}){ //получить фильмы с картинками
+                                
+            const films = await api.getFilms(); //загружаем фильмы
+
+            for(const film of films ) {         
+                let result = await api.getImg(film.title); //загружаем картинку по названию фильма
+
+                //если картинка есть записываем ее в новое свойсто img или присваевываем картинку "заглушку"
+                film.img = result.length > 0 ? result[0].webformatURL : "http://placehold.it/260x85?text=Placeholder"
+            }
+            
             commit('GET_FILMS', films);
         },
-        setSearch({commit},payload){
+        
+        setSearch({commit},payload){ //установить текст для поиска
             commit('SET_SEARCH',payload)
         }
         
@@ -30,8 +40,8 @@ export const store = new Vuex.Store({
     getters:{
         films: state => state.films,
         searchText: state => state.searchText,
-        searchFilm: state => {
-            let searchedFilms = state.films.filter(film => film.title.includes(state.searchText));
+        searchFilm: state => {      // возвращает найденные фильмы
+            const searchedFilms = state.films.filter(film => film.title.toLowerCase().includes(state.searchText.toLowerCase()));
             return searchedFilms;
         } 
     }

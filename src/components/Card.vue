@@ -1,8 +1,10 @@
 <template>
     <div class="card">
-        <div class="card__img">
-            <img class="defaultImg" src="../../assets/img.png" alt="">
-        </div>
+        <router-link :to="{path:'film/' + this.id}">
+            <div class="card__img">
+                <img class="img" :src="img" alt="">
+            </div>
+        </router-link>
         <div class="card__info">
             <p class="card__title">{{this.title}}</p>
             <p class="card__subtitle">{{this.subtitle}}</p>
@@ -22,8 +24,18 @@ export default {
        subtitle: {
            type: String,
            default: ''
+       },
+       img: {
+           type: String,
+           default: ''
+       },
+       id: {
+           type: Number
        }
-   }
+   },
+   beforeCreate() {
+       
+   },
 }
 </script>
 <style lang="scss">
@@ -55,11 +67,11 @@ export default {
             margin: 0;
         }
     }
-    .defaultImg {
-        position: relative;
-        top:5px;
+    .img {
+        
         max-width: 100%;
-        height: 70px;
+        height: 84px;
+        object-fit: cover;
     }
 
 </style>

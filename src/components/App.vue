@@ -1,9 +1,7 @@
 <template>
     <div class="app">
-        <h1 class="title">Каталог фильмов</h1>
-        <Search/>
-        <Content/>
-    </div>
+        <router-view></router-view>
+    </div>      
 </template>
 <script>
 import Search from './Search.vue';
@@ -41,12 +39,6 @@ export default {
    .title {
        font-family: Tahoma;
        font-size: 24px
-   }
-   .content {
-       display: grid;
-       grid-gap: 18px;
-       grid-template-columns: repeat(auto-fill, minmax(258px, 1fr));
-       grid-template-rows: repeat(auto-fill, 1fr);
    }
    .btn {
        display: block;

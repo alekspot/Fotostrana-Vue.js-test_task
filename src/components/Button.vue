@@ -1,5 +1,10 @@
 <template>
-    <button @click="getFilms()" class="btn"><slot></slot></button>
+    <button  class="btn">
+        
+            <slot></slot>
+            
+        
+    </button>
 </template>
 <script>
 
@@ -7,7 +12,7 @@ import  filmAPI  from '../../api/films'
 export default {
   methods: {
       getFilms(){
-          filmAPI.getImg();
+          
       }
   }
 }
