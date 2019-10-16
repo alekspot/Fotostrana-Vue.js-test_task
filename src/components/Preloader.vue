@@ -1,5 +1,5 @@
 <template>
-    <img class="preloader" src="./35.gif" alt="">
+    <img class="preloader" src="../assets/35.gif" alt="">
 </template>
 <script>
 

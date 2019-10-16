@@ -1,18 +1,14 @@
 <template>
-    <button  class="btn">
-        
-            <slot></slot>
-            
-        
+    <button @click="getNewFilms()" class="btn">
+        <slot></slot>
     </button>
 </template>
 <script>
 
-import  filmAPI  from '../../api/films'
 export default {
   methods: {
-      getFilms(){
-          
+      getNewFilms(){
+          this.$store.dispatch('getNewFilms');
       }
   }
 }

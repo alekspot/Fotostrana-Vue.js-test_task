@@ -1,10 +1,10 @@
 <template>
     <div class="card">
-        <router-link :to="{path:'film/' + this.id}">
-            <div class="card__img">
-                <img class="img" :src="img" alt="">
-            </div>
-        </router-link>
+        
+        <div class="card__img" :style="styleObject">
+            <!-- <img class="img" :src="img" alt=""> -->
+        </div>
+        
         <div class="card__info">
             <p class="card__title">{{this.title}}</p>
             <p class="card__subtitle">{{this.subtitle}}</p>
@@ -15,29 +15,35 @@
 
 
 export default {
-   name:'Card',
-   props: {
-       title: {
-           type: String,
-           default: ''
-       },
-       subtitle: {
-           type: String,
-           default: ''
-       },
-       img: {
-           type: String,
-           default: ''
-       },
-       id: {
-           type: Number
+    name:'Card',
+    props: {
+        title: {
+            type: String,
+            default: ''
+        },
+        subtitle: {
+            type: String,
+            default: ''
+        },
+        img: {
+            type: String,
+            default: ''
+        },
+        id: {
+            type: Number
+        }
+    },
+    data() {
+       return {
+           styleObject: {
+                background: `url('${this.img}')`,
+                backgroundSize: `contain`
+            }
        }
-   },
-   beforeCreate() {
-       
-   },
+    }
 }
 </script>
+
 <style lang="scss">
     .card {
         font-family: Tahoma;
@@ -46,6 +52,8 @@ export default {
             position: relative;
             border-radius: 4px 4px 0px 0px;
             background: #f4f4f4;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
             height: 84px;
             text-align: center;
             vertical-align: middle
@@ -68,7 +76,6 @@ export default {
         }
     }
     .img {
-        
         max-width: 100%;
         height: 84px;
         object-fit: cover;

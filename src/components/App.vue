@@ -1,29 +1,24 @@
 <template>
     <div class="app">
-        <router-view></router-view>
+        <Header/>
+        <Content v-if="isInit"/>
+        <Preloader v-else/>
     </div>      
 </template>
 <script>
-import Search from './Search.vue';
+import Header from './Header.vue';
 import Content from './Content.vue';
-
-import { filmAPI } from '../../api/films'
+import Preloader from './Preloader.vue';
 
 export default {
     components:{
-        Search,
-        Content
+        Header,
+        Content,
+        Preloader
     },
     computed: {
-        allFilms(){
-           return this.$store.getters.films
-        },
-        foundFilm(){
-            return this.$store.getters.searchFilm
-        },
-        whatShow(){
-            let filmsArr  =  this.foundFilm.length > 0 ? this.foundFilm : this.allFilms;
-            return filmsArr;          
+        isInit(){
+            return this.$store.getters.films.length > 0 ? true : false
         }
     }
 }
@@ -36,21 +31,5 @@ export default {
         margin: 0 auto;
         padding: 0 10px;
     }
-   .title {
-       font-family: Tahoma;
-       font-size: 24px
-   }
-   .btn {
-       display: block;
-       margin: 35px auto ;
-       background: #108CE5;
-       color:#fff;
-       font-size: 13px;
-       font-family: Tahoma;
-       padding: 8px 44px;
-       border-radius: 4px;
-       outline: none;
-       border: none;
-       cursor: pointer;
-   }
+    
 </style>
