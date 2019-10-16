@@ -37,22 +37,17 @@ const filmAPI = {
         return filmsWithImg;   
     },
     
-    async getNewFilms(count, loadedCount, countFilms) { //принимает колличество фильмов, которое хотим загрузить, возвращает массив загруженных фильмов
-        let counter;
-        //всего 7 загружено 4 , создать массив из 1
-        if(countFilms - loadedCount  <= count) {
-            counter = countFilms - loadedCount;
-        } else {
-            counter = count
-        }
-       
+    async getNewFilms(count, loadedCount, countFilms) { //получить часть фильмов
+        const remainedLoad = countFilms - loadedCount; //определяем сколько осталось загрузить фильмов
+
+        let counter = remainedLoad  <= count ? remainedLoad : count; //если осталось загрузить фильмов меньше чем мы хотим получить, то загружаем оставшиеся
         
         let arr = []; //создаем и заполняем массив значениями, чтобы использвать цикл for...of
         for (let i = 0; i < counter; i++){ 
             arr[i] = loadedCount + i + 1
         }
 
-        let newFilms = []; //масиив для заполнения загружаемыми фильмами
+        let newFilms = []; 
 
         for (let item of arr) {  //для последовательного выполнения асинхронных действий используется цикл for...of
             const film = await instance1.get(`${item}/`);

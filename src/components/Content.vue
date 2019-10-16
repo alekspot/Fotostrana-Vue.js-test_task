@@ -1,25 +1,24 @@
 <template>
-    <main>
+    <main class="main">
         <p class="notFound" v-if="notFound">Совпадений не найдено</p>
         <div v-else class="content">    
             <template >
                 <Card 
-                    v-for="(film,index) in whatShow" 
-                    :key="index"
+                    v-for="film in whatShow" 
+                    :key ="film.episode_id"
                     :title="film.title"
                     :subtitle="film.director"
                     :img="film.img"
                 />
-                
             </template>
         </div>
         <Button v-if="showBtn">Показать еще</Button>
-        <p v-if="showPreloader">Пожалуста подождите, идет загрузка новых фильмов</p>
-    </main>
-    
-</template>
-<script>
 
+        <p class="content__wait" v-if="showPreloader">Пожалуста подождите, идет загрузка новых фильмов</p>
+    </main>
+</template>
+
+<script>
 import Card from './Card.vue';
 import Button from './Button.vue';
 export default {
@@ -39,37 +38,34 @@ export default {
         showBtn(){ // показывать кнопку если нет текста в поисковой строке или не все фильмы еще были загружены 
             return !this.$store.getters.searchText && !this.$store.getters.allFilmsIsLoaded
         },
+
         showPreloader(){
-            return this.$store.state.
-        }
+            return this.$store.state.isLoading
+        },
+
         areFoundFilms(){ //если найдено и строка поиска заполнена
-            let result = this.foundFilms.length > 0 && this.searchText !=='' ? true : false
-            return result;
+            return this.foundFilms.length > 0 && this.searchText !==''
         },
 
         notFound(){  //если не найдено и строка поиска заполнена
-            let result = this.foundFilms.length === 0 && this.searchText !==''  ?  true : false;
-            return result;
+            return this.foundFilms.length === 0 && this.searchText !==''
         },
 
-        whatShow(){ //определяет что показывать: найденные фильмы или все загруженные фильмы
-            let filmsArr  =  this.areFoundFilms ? this.foundFilms : this.allFilms;
-            return filmsArr;          
-        },
-        
+        whatShow(){ //определить что показывать: найденные фильмы или все загруженные фильмы
+            return this.areFoundFilms ? this.foundFilms : this.allFilms;        
+        },      
     }
 }
 </script>
-<style lang="scss">
 
+<style lang="scss">
    .content {
        display: grid;
        grid-gap: 18px;
        grid-template-columns: repeat(auto-fit, 258px);
-       
        justify-content: center;
    }
-   .notFound {
+   .notFound, .content__wait {
        font-family: Tahoma;
        font-size: 24px;
    }

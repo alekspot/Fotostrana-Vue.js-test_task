@@ -1,5 +1,5 @@
 <template>
-    <button @click="getNewFilms()" class="btn">
+    <button @click="getNewFilms()" class="btn" :disabled="isDisabled">
         <slot></slot>
     </button>
 </template>
@@ -7,9 +7,14 @@
 
 export default {
   methods: {
-      getNewFilms(){
-          this.$store.dispatch('getNewFilms');
-      }
+        getNewFilms(){
+            this.$store.dispatch('getNewFilms');
+        }
+  },
+  computed:{
+        isDisabled(){
+            return this.$store.state.isLoading
+        }
   }
 }
 </script>

@@ -17,7 +17,7 @@ export default {
         Preloader
     },
     computed: {
-        isInit(){
+        isInit(){ // определяет загрузились ли данные
             return this.$store.getters.films.length > 0 ? true : false
         }
     }
@@ -25,11 +25,8 @@ export default {
 </script>
 <style lang="scss">
     .app {
-        display: flex;
-        flex-direction: column;
         max-width: 810px;
         margin: 0 auto;
-        padding: 0 10px;
+        padding: 0 10px 15px;
     }
-    
 </style>

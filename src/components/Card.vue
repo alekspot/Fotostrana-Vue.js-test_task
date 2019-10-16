@@ -1,10 +1,8 @@
 <template>
     <div class="card">
         
-        <div class="card__img" :style="styleObject">
-            <!-- <img class="img" :src="img" alt=""> -->
-        </div>
-        
+        <div class="card__img" :style="{background: `url('${this.img}')`}"></div>
+            
         <div class="card__info">
             <p class="card__title">{{this.title}}</p>
             <p class="card__subtitle">{{this.subtitle}}</p>
@@ -12,7 +10,6 @@
     </div>
 </template>
 <script>
-
 
 export default {
     name:'Card',
@@ -32,14 +29,6 @@ export default {
         id: {
             type: Number
         }
-    },
-    data() {
-       return {
-           styleObject: {
-                background: `url('${this.img}')`,
-                backgroundSize: `contain`
-            }
-       }
     }
 }
 </script>
@@ -75,10 +64,4 @@ export default {
             margin: 0;
         }
     }
-    .img {
-        max-width: 100%;
-        height: 84px;
-        object-fit: cover;
-    }
-
 </style>
