@@ -1,3 +1,5 @@
+Demo: https://alekspot.github.io/fotostranaTest/index.html
+
 Тестовое задание на должность Front-end разработчика
 Необходимо реализовать каталог фильмов с возможностью поиска и получения данных по Ajax.
 
